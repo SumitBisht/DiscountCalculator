@@ -1,9 +1,6 @@
 require 'test/unit'
 require '../lib/Bill'
 require '../lib/User'
-# Reusing contents created earlier
-# require './TestApplicableDiscounts'
-# require './TestBillDetails'
 
 class TestComputedDiscounts < Test::Unit::TestCase
 

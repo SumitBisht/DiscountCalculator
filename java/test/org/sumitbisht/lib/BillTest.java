@@ -139,7 +139,7 @@ public class BillTest {
 		assertEquals(0.0d, emptyBill.netPayableAmount(), 0.0d);
 		assertEquals(314.0d, groceryBill.netPayableAmount(), 0.0d);
 		assertEquals(535.5d, nonGroceryBill.netPayableAmount(), 0.0d);
-		assertEquals(918.95d, complexBill.netPayableAmount(), 0.0d);
+		assertEquals(918.95d, complexBill.netPayableAmount(), 0.00d);
 	}
 	
 	@Test

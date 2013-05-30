@@ -1,4 +1,3 @@
 
-require './TestApplicableDiscounts'
-require './TestBillDetails'
-require './TestComputedDiscounts'
+require './TestUser'
+require './TestBill'

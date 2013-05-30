@@ -1,16 +1,17 @@
 class Bill
+	attr_accessor :user
 	def initialize(user=nil)
-		@grocery_costs = 0
-		@other_costs = 0
+		@grocery_costs = 0.0
+		@other_costs = 0.0
 		@user= user
 	end
 	def add_item(item, category, quantity, price)
-		@other_costs += quantity * price if category != "groceries"
-		@grocery_costs += quantity * price if category == "groceries"
+		@other_costs += Float(quantity * price) if category != "groceries"
+		@grocery_costs += Float(quantity * price) if category == "groceries"
 	end
 
-	def cost
-		@other_costs + @grocery_costs
+	def total_cost
+		Float(@other_costs + @grocery_costs)
 	end
 	def non_grocery_cost
 		@other_costs
@@ -18,11 +19,11 @@ class Bill
 
 	def net_payable_amount
 		if @user != nil
-			percentage_disc = non_grocery_cost() * @user.discount()/100
-			total_cost = cost() - percentage_disc
-			total_cost = total_cost - (total_cost/100)*5
-			return total_cost
+			disc_amt = Float(@other_costs * @user.discount()/100)
+			total = total_cost() - disc_amt
+			total = Float(total - 5*(Integer(total)/100)) if total >100.0
+			return total
 		end
-		cost()
+		total_cost()
 	end
 end

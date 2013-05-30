@@ -8,3 +8,5 @@ On a retail website, the following discounts apply:
 4. For every $100 on the bill, there would be a $ 5 discount (e.g. for $ 990, you get $ 45 as a discount). 
 5. The percentage based discounts do not apply on groceries. 
 6. A user can get only one of the percentage based discounts on a bill.  
+
+This repository contains the implementation as well as tests for the same in both ruby and java.

@@ -7,12 +7,12 @@ public class Bill
 	private double otherCosts = 0.0d;
 	User user = null;
 	
-	public Bill(User user)
+	public void setBillUser(User user)
 	{
 		this.user = user;
 	}
 	
-	public void addItem(String item, String category, int quantity, float price)
+	public void addItem(String item, String category, int quantity, double price)
 	{
 		if(category.equals("groceries"))
 		{
@@ -24,9 +24,9 @@ public class Bill
 		}
 	}
 	
-	public double getGroceryCosts()
+	public double getCosts()
 	{
-		return groceryCosts;
+		return groceryCosts + otherCosts;
 	}
 	
 	public double getOtherCosts()
@@ -36,7 +36,14 @@ public class Bill
 	
 	public double netPayableAmount()
 	{
-		return 0.0d;
+		if(user!=null)
+		{
+			double discounts = otherCosts * user.discount()/100;
+			double totalCost = getCosts() - discounts;
+			totalCost = totalCost - (int)(totalCost/100)*5;
+			return totalCost;
+		}
+		return getCosts();
 	}
 
 }

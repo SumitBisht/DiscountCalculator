@@ -17,6 +17,10 @@ public class BillTest {
 	Bill complexBill = null;
 	private Date currentDate = new Date(System.currentTimeMillis());
 	private Date oldDate = new Date((System.currentTimeMillis()-(1000L*60*60*24*365*3)));
+	User customer = new User("customer", currentDate );
+	User oldCustomer = new User("customer", oldDate );
+	User employee = new User("employee", currentDate );
+	User affiliate = new User("affiliate", currentDate );
 	
 	@Before
 	public void setUp() throws Exception {
@@ -109,10 +113,11 @@ public class BillTest {
 	
 	@Test
 	public void testDiscountsForEmployees(){
-		emptyBill.setBillUser(new User("employee", currentDate ));
-		groceryBill.setBillUser(new User("employee", currentDate ));
-		nonGroceryBill.setBillUser(new User("employee", currentDate ));
-		complexBill.setBillUser(new User("employee", currentDate ));
+		emptyBill.setBillUser(employee);
+		groceryBill.setBillUser(employee);
+		nonGroceryBill.setBillUser(employee);
+		complexBill.setBillUser(employee);
+		
 		assertEquals(0.0d, emptyBill.netPayableAmount(), 0.0d);
 		assertEquals(314.0d, groceryBill.netPayableAmount(), 0.0d);
 		assertEquals(393.0d, nonGroceryBill.netPayableAmount(), 0.0d);
@@ -121,10 +126,11 @@ public class BillTest {
 
 	@Test
 	public void testDiscountsForNormalConsumers(){
-		emptyBill.setBillUser(new User("customer", currentDate ));
-		groceryBill.setBillUser(new User("customer", currentDate ));
-		nonGroceryBill.setBillUser(new User("customer", currentDate ));
-		complexBill.setBillUser(new User("customer", currentDate ));
+		emptyBill.setBillUser(customer);
+		groceryBill.setBillUser(customer);
+		nonGroceryBill.setBillUser(customer);
+		complexBill.setBillUser(customer);
+		
 		assertEquals(0.0d, emptyBill.netPayableAmount(), 0.0d);
 		assertEquals(314.0d, groceryBill.netPayableAmount(), 0.0d);
 		assertEquals(565.0d, nonGroceryBill.netPayableAmount(), 0.0d);
@@ -132,10 +138,11 @@ public class BillTest {
 	}
 	@Test
 	public void testDiscountsForOldConsumers(){
-		emptyBill.setBillUser(new User("customer", oldDate ));
-		groceryBill.setBillUser(new User("customer", oldDate ));
-		nonGroceryBill.setBillUser(new User("customer", oldDate ));
-		complexBill.setBillUser(new User("customer", oldDate ));
+		emptyBill.setBillUser(oldCustomer);
+		groceryBill.setBillUser(oldCustomer);
+		nonGroceryBill.setBillUser(oldCustomer);
+		complexBill.setBillUser(oldCustomer);
+		
 		assertEquals(0.0d, emptyBill.netPayableAmount(), 0.0d);
 		assertEquals(314.0d, groceryBill.netPayableAmount(), 0.0d);
 		assertEquals(535.5d, nonGroceryBill.netPayableAmount(), 0.0d);
@@ -144,10 +151,11 @@ public class BillTest {
 	
 	@Test
 	public void testDiscountsForAffiliates(){
-		emptyBill.setBillUser(new User("affiliate", currentDate ));
-		groceryBill.setBillUser(new User("affiliate", currentDate ));
-		nonGroceryBill.setBillUser(new User("affiliate", currentDate ));
-		complexBill.setBillUser(new User("affiliate", currentDate ));
+		emptyBill.setBillUser(affiliate);
+		groceryBill.setBillUser(affiliate);
+		nonGroceryBill.setBillUser(affiliate);
+		complexBill.setBillUser(affiliate);
+		
 		assertEquals(0.0d, emptyBill.netPayableAmount(), 0.0d);
 		assertEquals(314.0d, groceryBill.netPayableAmount(), 0.0d);
 		assertEquals(506.0d, nonGroceryBill.netPayableAmount(), 0.0d);

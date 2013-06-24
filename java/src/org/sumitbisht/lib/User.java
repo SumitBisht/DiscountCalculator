@@ -5,10 +5,10 @@ import java.util.Date;
 
 public class User {
 
-	private String type="";
+	private Type type;
 	private Date joinDate = null;
 
-	public User(String type, Date joinDate)
+	public User(Type type, Date joinDate)
 	{
 		this.type = type;
 		this.joinDate = joinDate;
@@ -24,11 +24,11 @@ public class User {
 	}
 	public int discount()
 	{
-		if(type.equals("employee"))
+		if(type == Type.EMPLOYEE)
 			return 30;
-		if(type.equals("affiliate"))
+		if(type == Type.AFFILIATE)
 			return 10;
-		if(type.equals("customer") && joinDate.before(twoYearsBeforePresentDate()))
+		if(type == Type.CUSTOMER && joinDate.before(twoYearsBeforePresentDate()))
 			return 5;
 		return 0;
 	}

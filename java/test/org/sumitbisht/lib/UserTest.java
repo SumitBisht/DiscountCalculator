@@ -18,10 +18,10 @@ public class UserTest {
 	@Before
 	public void setUp() throws Exception {
 		DateFormat format = new SimpleDateFormat("dd mm yyyy");
-		simpleUser = new User("customer", format.parse("12 03 2013"));
-		oldUser = new User("customer", format.parse("22 06 2010"));
-		employee = new User("employee", format.parse("6 11 2012"));
-		affiliate = new User("affiliate", format.parse("08 09 2011"));
+		simpleUser = new User(Type.CUSTOMER, format.parse("12 03 2013"));
+		oldUser = new User(Type.CUSTOMER, format.parse("22 06 2010"));
+		employee = new User(Type.EMPLOYEE, format.parse("6 11 2012"));
+		affiliate = new User(Type.AFFILIATE, format.parse("08 09 2011"));
 	}
 
 	@After

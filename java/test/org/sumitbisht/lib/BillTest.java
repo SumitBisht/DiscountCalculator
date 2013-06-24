@@ -7,6 +7,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.sumitbisht.lib.Bill;
+import org.sumitbisht.lib.Type;
+import org.sumitbisht.lib.User;
 
 
 public class BillTest {
@@ -17,39 +19,39 @@ public class BillTest {
 	Bill complexBill = null;
 	private Date currentDate = new Date(System.currentTimeMillis());
 	private Date oldDate = new Date((System.currentTimeMillis()-(1000L*60*60*24*365*3)));
-	User customer = new User("customer", currentDate );
-	User oldCustomer = new User("customer", oldDate );
-	User employee = new User("employee", currentDate );
-	User affiliate = new User("affiliate", currentDate );
+	User customer = new User(Type.CUSTOMER, currentDate );
+	User oldCustomer = new User(Type.CUSTOMER, oldDate );
+	User employee = new User(Type.EMPLOYEE, currentDate );
+	User affiliate = new User(Type.AFFILIATE, currentDate );
 	
 	@Before
 	public void setUp() throws Exception {
 		emptyBill = new Bill();
 		
 		groceryBill = new Bill();
-		groceryBill.addItem("floor", "groceries", 5, 10);
-		groceryBill.addItem("pulses", "groceries", 4, 40);
-		groceryBill.addItem("rice", "groceries", 5, 15);
-		groceryBill.addItem("jaggery", "groceries", 2, 22);
+		groceryBill.addItem( "groceries", 5, 10);
+		groceryBill.addItem( "groceries", 4, 40);
+		groceryBill.addItem( "groceries", 5, 15);
+		groceryBill.addItem( "groceries", 2, 22);
 		
 		nonGroceryBill = new Bill();
-		nonGroceryBill.addItem("Duct Tape", "utility", 2, 10);
-		nonGroceryBill.addItem("Adhesive", "utility", 1, 20);
-		nonGroceryBill.addItem("Nail", "utility", 50, 0.4);
-		nonGroceryBill.addItem("Drill bit", "utility", 3, 41);
-		nonGroceryBill.addItem("Plier", "utility", 1, 7);
-		nonGroceryBill.addItem("Wallpaper", "decoration", 4, 100);
+		nonGroceryBill.addItem( "utility", 2, 10);
+		nonGroceryBill.addItem( "utility", 1, 20);
+		nonGroceryBill.addItem( "utility", 50, 0.4);
+		nonGroceryBill.addItem( "utility", 3, 41);
+		nonGroceryBill.addItem( "utility", 1, 7);
+		nonGroceryBill.addItem( "decoration", 4, 100);
 		
 		complexBill = new Bill();
-		complexBill.addItem("Tshirt", "clothes", 2, 41.5);
-		complexBill.addItem("Headphone", "accessories", 1, 65);
-		complexBill.addItem("Noodles", "groceries", 2, 41.5);
-		complexBill.addItem("Drapes", "decoration", 6, 12);
-		complexBill.addItem("Shorts", "clothes", 2, 35.5);
-		complexBill.addItem("Socks", "clothes", 2, 15);
-		complexBill.addItem("Cleaner", "groceries", 1, 25);
-		complexBill.addItem("Chair", "furniture", 8, 50);
-		complexBill.addItem("Table", "furniture", 1, 180);
+		complexBill.addItem( "clothes", 2, 41.5);
+		complexBill.addItem( "accessories", 1, 65);
+		complexBill.addItem( "groceries", 2, 41.5);
+		complexBill.addItem( "decoration", 6, 12);
+		complexBill.addItem( "clothes", 2, 35.5);
+		complexBill.addItem( "clothes", 2, 15);
+		complexBill.addItem( "groceries", 1, 25);
+		complexBill.addItem( "furniture", 8, 50);
+		complexBill.addItem( "furniture", 1, 180);
 	}
 
 	@After
@@ -62,26 +64,26 @@ public class BillTest {
 
 	@Test
 	public void testAddItem() {
-		emptyBill.addItem("sampleItem", "cosmetics", 5, 10);
+		emptyBill.addItem( "cosmetics", 5, 10);
 		assertEquals(50, emptyBill.getCosts(), 0.0d);
 		assertEquals(50, emptyBill.getOtherCosts(), 0.0d);
 		
 		double earlierPrice = groceryBill.getCosts();
 		double otherPrice = groceryBill.getOtherCosts();
-		groceryBill.addItem("apples", "groceries", 1, 20);
+		groceryBill.addItem( "groceries", 1, 20);
 		assertEquals(earlierPrice+20.0d, groceryBill.getCosts(), 0.0d);
 		assertEquals(otherPrice, groceryBill.getOtherCosts(), 0.0d);
 		
 		earlierPrice = nonGroceryBill.getCosts();
 		otherPrice = nonGroceryBill.getOtherCosts();
-		nonGroceryBill.addItem("Pillow", "home", 4, 15);
+		nonGroceryBill.addItem( "home", 4, 15);
 		assertEquals(earlierPrice+60, nonGroceryBill.getCosts(), 0.0d);
 		assertEquals(otherPrice+60, nonGroceryBill.getCosts(), 0.0d);
 
 		earlierPrice = complexBill.getCosts();
 		otherPrice = complexBill.getOtherCosts();
-		complexBill.addItem("Carpet", "home", 1, 450);
-		complexBill.addItem("Dry Fruits", "groceries", 4, 50);
+		complexBill.addItem( "home", 1, 450);
+		complexBill.addItem( "groceries", 4, 50);
 		assertEquals(earlierPrice+650, complexBill.getCosts(), 0.0d);
 		assertEquals(otherPrice+450, complexBill.getOtherCosts(), 0.0d);
 		

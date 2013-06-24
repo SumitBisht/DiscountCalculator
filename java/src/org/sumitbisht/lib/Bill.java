@@ -12,7 +12,7 @@ public class Bill
 		this.user = user;
 	}
 	
-	public void addItem(String item, String category, int quantity, double price)
+	public void addItem( String category, int quantity, double price)
 	{
 		if(category.equals("groceries"))
 		{

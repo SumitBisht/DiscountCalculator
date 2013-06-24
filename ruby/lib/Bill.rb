@@ -5,7 +5,7 @@ class Bill
 		@other_costs = 0.0
 		@user= user
 	end
-	def add_item(item, category, quantity, price)
+	def add_item(category, quantity, price)
 		@other_costs += Float(quantity * price) if category != "groceries"
 		@grocery_costs += Float(quantity * price) if category == "groceries"
 	end

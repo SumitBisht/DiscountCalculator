@@ -3,11 +3,11 @@ require '../lib/User'
 class TestUser < Test::Unit::TestCase
 
 	def setup
-		@tarun = User.new('customer', Time.new(2012, 4, 25) )
-		@ravi = User.new('employee', Time.new(2011, 5, 5) )
-		@vijay = User.new('affiliate', Time.new(2010,12, 9) )
-		@rafiq = User.new('customer', Time.new(2010, 8, 26) )
-		@dave = User.new('affiliate', Time.new(2011,4,16) )
+		@tarun = User.new(UserType::CUSTOMER, Time.new(2012, 4, 25) )
+		@ravi = User.new(UserType::EMPLOYEE, Time.new(2011, 5, 5) )
+		@vijay = User.new(UserType::AFFILIATE, Time.new(2010,12, 9) )
+		@rafiq = User.new(UserType::CUSTOMER, Time.new(2010, 8, 26) )
+		@dave = User.new(UserType::AFFILIATE, Time.new(2011,4,16) )
 	end
 
 	def teardown
